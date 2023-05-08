@@ -31,6 +31,7 @@ public class TalksController {
         }
     }
 
+    @PostMapping
     public ResponseEntity<?> saveTalk(@RequestBody TalkDto talkDto) {
         try {
             talksService.saveTalk(talkDto);
