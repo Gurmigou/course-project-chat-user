@@ -8,15 +8,13 @@ import com.videochat.videochatuser.service.SecurityService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/v1/security")
+@CrossOrigin("*")
 public class SecurityController {
     private final SecurityService userService;
 
@@ -31,6 +29,7 @@ public class SecurityController {
             TokenDto tokenDto = userService.loginUser(loginDto);
             return ResponseEntity.ok(tokenDto);
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity
                     .badRequest()
                     .body(new Response(false, e.getMessage()));
@@ -40,9 +39,11 @@ public class SecurityController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody @Valid RegistrationDto registrationDto) {
         try {
+            System.out.println("In registerUser");
             userService.registerUser(registrationDto);
             return ResponseEntity.ok(new Response(true, "You have been successfully registered"));
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity
                     .badRequest()
                     .body(new Response(false, e.getMessage()));
@@ -55,6 +56,7 @@ public class SecurityController {
             TokenDto tokenDto = userService.generateToken(principal.getName());
             return ResponseEntity.ok(tokenDto);
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity
                     .badRequest()
                     .body(new Response(false, "Jwt token is invalid: " + e.getMessage()));

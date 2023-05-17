@@ -11,6 +11,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/v1/talk")
+@CrossOrigin("*")
 public class TalksController {
     private final TalksService talksService;
 
