@@ -28,8 +28,8 @@ public class UserService {
     }
 
     @Transactional
-    public UserDto updateUser(UserDto userDto) {
-        var user = findUserByUsername(userDto.username());
+    public UserDto updateUser(String oldName, UserDto userDto) {
+        var user = findUserByUsername(oldName);
         user.setUsername(userDto.username());
         user.setMyGender(userDto.myGender());
         user.setGenderPreference(userDto.preferredGender());

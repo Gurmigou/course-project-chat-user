@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/api/v1/user")
 @CrossOrigin("*")
@@ -32,9 +34,9 @@ public class UserController {
     }
 
     @PutMapping
-    public ResponseEntity<?> updateUserInfo(@RequestBody UserDto userDto) {
+    public ResponseEntity<?> updateUserInfo(Principal principal, @RequestBody UserDto userDto) {
         try {
-            var userInfo = userService.updateUser(userDto);
+            var userInfo = userService.updateUser(principal.getName(), userDto);
             return ResponseEntity.ok(userInfo);
         } catch (Exception e) {
             e.printStackTrace();
