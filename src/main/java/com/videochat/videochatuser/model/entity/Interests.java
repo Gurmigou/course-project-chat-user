@@ -27,4 +27,13 @@ public enum Interests {
     Interests(String name) {
         this.name = name;
     }
+
+    public static Interests fromString(String name) {
+        for (Interests interest : Interests.values()) {
+            if (interest.name.equalsIgnoreCase(name)) {
+                return interest;
+            }
+        }
+        throw new IllegalArgumentException("No enum constant with name " + name);
+    }
 }

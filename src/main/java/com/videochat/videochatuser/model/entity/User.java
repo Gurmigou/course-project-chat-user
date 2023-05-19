@@ -54,7 +54,7 @@ public class User {
 
     public List<Interests> getInterests() {
         return Stream.of(interests.split(","))
-                .map(Interests::valueOf)
+                .map(Interests::fromString)
                 .collect(Collectors.toList());
     }
 }

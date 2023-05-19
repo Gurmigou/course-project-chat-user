@@ -26,6 +26,7 @@ public class TalksController {
             var talks = talksService.getAllTalksForUser(principal.getName());
             return ResponseEntity.ok(talks);
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity
                     .badRequest()
                     .body(new Response(false, e.getMessage()));
@@ -38,6 +39,7 @@ public class TalksController {
             talksService.saveTalk(talkDto);
             return ResponseEntity.ok(new Response(true, "Talk saved"));
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity
                     .badRequest()
                     .body(new Response(false, e.getMessage()));

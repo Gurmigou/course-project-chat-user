@@ -24,6 +24,7 @@ public class UserController {
             var userInfo = userService.getUserInfo(username);
             return ResponseEntity.ok(userInfo);
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity
                     .badRequest()
                     .body(new Response(false, e.getMessage()));
@@ -36,6 +37,7 @@ public class UserController {
             var userInfo = userService.updateUser(userDto);
             return ResponseEntity.ok(userInfo);
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity
                     .badRequest()
                     .body(new Response(false, e.getMessage()));

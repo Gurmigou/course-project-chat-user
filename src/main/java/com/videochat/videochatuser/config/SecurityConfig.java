@@ -17,7 +17,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig implements WebMvcConfigurer {
-
     private final JwtRequestTokenVerifier jwtRequestTokenVerifier;
 
     @Autowired
@@ -47,14 +46,6 @@ public class SecurityConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000")
                 .allowedMethods("*");
-    }
-
-    private String[] permittedEndpoints() {
-        return new String[]{
-                "/api/v1/security/login",
-                "/api/v1/security/register",
-                "/api/v1/security/update-token"
-        };
     }
 
     @Bean
