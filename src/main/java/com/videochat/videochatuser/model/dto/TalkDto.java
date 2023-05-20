@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class TalkDto {
     private String firstPeerName;
     private String secondPeerName;
-    private Long duration;
+    private String duration;
     private LocalDate date;
 }
 

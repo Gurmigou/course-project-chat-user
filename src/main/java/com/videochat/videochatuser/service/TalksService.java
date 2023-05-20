@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -23,6 +24,7 @@ public class TalksService {
     public List<TalkDto> getAllTalksForUser(String username) {
         return talkRepository.findAllWhereUsernameIsPeer(username)
                 .stream()
+                .sorted(Comparator.comparingInt(Talk::getId).reversed())
                 .map(talk -> mapToTalkDto(talk, username))
                 .toList();
     }

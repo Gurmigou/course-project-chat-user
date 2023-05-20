@@ -26,7 +26,7 @@ public class Talk {
     @JoinColumn(name = "second_peer_id")
     private User secondPeer;
 
-    private Long duration;
+    private String duration;
 
     private LocalDate date;
 }

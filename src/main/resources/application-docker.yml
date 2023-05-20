@@ -1,0 +1,22 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: video-chat-user
+  datasource:
+    url: jdbc:mysql://db:3306/video_chat_user?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery:8010/eureka
+
+token-secret-key: nc*De*WD?788OK.n*5YRwefodikjedwoikdwnoedoidweoniedwonnodedwenodewoidweonidewnow
