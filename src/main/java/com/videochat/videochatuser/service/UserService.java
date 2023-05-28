@@ -30,10 +30,9 @@ public class UserService {
     @Transactional
     public UserDto updateUser(String oldName, UserDto userDto) {
         var user = findUserByUsername(oldName);
-        user.setUsername(userDto.username());
-        user.setMyGender(userDto.myGender());
-        user.setGenderPreference(userDto.preferredGender());
-        user.setInterests(userDto.interests());
+        user.setMyGender(userDto.myGender() == null ? user.getMyGender() : userDto.myGender());
+        user.setGenderPreference(userDto.preferredGender() == null ? user.getGenderPreference() : userDto.preferredGender());
+        user.setInterests((userDto.interests() == null || userDto.interests().isEmpty()) ? user.getInterests() : userDto.interests());
         var updatedUser = userRepository.save(user);
         return mapToUserDto(updatedUser);
     }
